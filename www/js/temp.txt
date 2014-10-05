@@ -1,0 +1,53 @@
+ $scope.disDayMarkers = function(dayMarker) {
+        $scope.marker1 = {
+            idKey: 1,
+            coords: {
+                latitude: null,
+                longitude: null
+            },
+            markerControl: {},
+            showWindow: true,
+            location: '',
+            postCode: '',
+            time: '',
+            phoneNumber: ''
+        };
+        $scope.marker2 = {
+            idKey: 2,
+            coords: {
+                latitude: null,
+                longitude: null
+            },
+            markerControl: {},
+            showWindow: true,
+            location: '',
+            postCode: '',
+            time: '',
+            phoneNumber: ''
+        };
+
+        for(i = 0; i < dayMarker.length; i ++){
+            if(i == 0){
+                console.log("marker1 insert data: " + JSON.stringify(dayMarker[i]));
+                $scope.marker1.coords.latitude = dayMarker[i].latitude;
+                $scope.marker1.coords.longitude = dayMarker[i].longitude;
+                $scope.marker1.location = dayMarker[i].location;
+                $scope.marker1.postCode = dayMarker[i].postCode;
+                $scope.marker1.time = dayMarker[i].time;
+                $scope.marker1.phoneNumber = dayMarker[i].phoneNumber;
+                $scope.marker1.showWindow = true;
+                $scope.marker1.idKey = i;
+            }
+            if(i == 1){
+                console.log("marker2 insert data: " + JSON.stringify(dayMarker[i]));
+                $scope.marker2.coords.latitude = dayMarker[i].latitude;
+                $scope.marker2.coords.longitude = dayMarker[i].longitude;
+                $scope.marker2.location = dayMarker[i].location;
+                $scope.marker2.postCode = dayMarker[i].postCode;
+                $scope.marker2.time = dayMarker[i].time;
+                $scope.marker2.phoneNumber = dayMarker[i].phoneNumber;
+                $scope.marker2.showWindow = true;
+                $scope.marker2.idKey = i;
+            }
+        }
+    }

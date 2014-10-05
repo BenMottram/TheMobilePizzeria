@@ -1,0 +1,46 @@
+<div class="item item-divider">
+    <h2>Starters & Canapés</h2>
+</div>
+<div class="item item-text-wrap">
+    <div class="caterContent" ng-repeat="startItem in startMenu">
+        <catering-start start-item="{{startItem.menuItem}}" start-text="{{startItem.menuText}}"></catering-start>
+    </div>
+</div>
+
+
+<div class="item item-divider">
+    <h2>Mains</h2>
+</div>
+<div class="item item-text-wrap">
+    <div class="caterContent" ng-repeat="mainItem in mainMenu">
+        <catering-main main-item="{{mainItem.menuItem}}" main-text="{{mainItem.menuText}}"></catering-main>
+    </div>
+</div>
+
+
+<div class="item item-divider">
+    <h2>Desserts</h2>
+</div>
+<div class="item item-text-wrap">
+    <div class="caterContent" ng-repeat="dessertItem in dessertMenu">
+        <catering-dessert dessert-item="{{dessertItem.menuItem}}" dessert-text="{{dessertItem.menuText}}"></catering-dessert>
+    </div>
+</div>
+
+
+DBFactory.selectToCateringStart();
+DBFactory.selectToCateringMain();
+DBFactory.selectToCateringDessert();
+$scope.startMenu = DBFactory.returnCateringStarterJSON();
+$scope.startItem = {menuItem: $scope.startMenu.menuItem, menuText: $scope.startMenu.menuText};
+
+$timeout(function() {
+$scope.mainMenu = DBFactory.returnCateringMainJSON();
+$scope.mainItem = {menuItem: $scope.mainMenu.menuItem, menuText: $scope.mainMenu.menuText};
+}, 3000);
+
+$timeout(function() {
+$scope.dessertMenu = DBFactory.returnCateringDessertJSON();
+$scope.dessertItem = {menuItem: $scope.dessertMenu.menuItem, menuText: $scope.dessertMenu.menuText};
+}, 5000);
+

@@ -1,0 +1,128 @@
+
+#logoImage{
+    height:30px;
+}
+
+.titleWrapper{
+    position: relative;
+    width: 100%;
+}
+
+.titleImage{
+    width: 100%;
+    border: solid 2px black;
+}
+
+.titleTextSuper{
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 5%;
+    z-index:100;
+    color: white;
+    padding: 2px;
+    text-align:center;
+}
+
+.titleText{
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 10%;
+    z-index:100;
+    background: white;
+    padding: 4px;
+    border: 4px solid black;
+    outline: 4px solid white;
+    text-align:center;
+}
+
+
+.pageTitle{
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align:center;
+    margin: 4px;
+}
+
+h2{
+    text-align:center;
+}
+
+p{
+    text-align:center;
+}
+
+.menuTextHead{
+    text-align:center;
+    font-weight: bold;
+}
+
+.menuTextBody{
+    text-align:center;
+}
+
+
+.angular-google-map-container {
+    height: 800px;
+}
+
+#daySelector{
+    padding:2px;
+    background: black;
+    border: 1px solid black;
+}
+
+.thumbsshell {
+    padding:4px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    border: 1px solid red;
+}
+
+.thumbnails {
+    width:60px;
+    padding:2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background: black;
+}
+
+.imageViewer{
+    width: 100%;
+    padding: 2px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+li {
+    list-style:none;
+    display:inline-block;
+}
+
+ul{
+    padding:0;
+    margin:0;
+    white-space:nowrap;
+}
+
+#selectedImageBox{
+    width: 100%;
+}
+
+#selectedImage{
+    width:100%;
+    border: 2px solid black;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+.contactBox{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:5px;
+    margin-bottom:5px;
+}

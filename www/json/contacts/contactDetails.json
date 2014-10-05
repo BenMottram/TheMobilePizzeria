@@ -1,0 +1,38 @@
+[
+{
+	"icon": "icon ion-ios7-telephone",
+	"text": "Enquiries",
+	"communication": "07782249902",
+	"link": "tel:07782249902"
+},
+{
+	"icon": "icon ion-ios7-telephone",
+	"text": "Scarlette The Oven",
+	"communication": "07747316263",
+	"link": "tel:07747316263"
+},
+{
+	"icon": "icon ion-ios7-telephone",
+	"text": "Irene The Oven",
+	"communication": "07782249902",
+	"link": "tel:07782249902"
+},
+{
+	"icon": "icon ion-ios7-email",
+	"text": "Email",
+	"communication": "themobilepizzeria@gmail.com",
+	"link": "mailto:benjidestructo@btinternet.com"
+},
+{
+	"icon": "icon ion-social-twitter",
+	"text": "Twitter",
+	"communication": "@mobilepizzeria",
+	"link": "https://twitter.com/mobilepizzeria"
+},
+{
+	"icon": "icon ion-social-facebook",
+	"text": "Facebook",
+	"communication": "The Mobile Pizzeria",
+	"link": "https://www.facebook.com/themobilepizzeria"
+}
+]

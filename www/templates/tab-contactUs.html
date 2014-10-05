@@ -1,0 +1,10 @@
+<ion-view title="The Mobile Pizzeria">
+	<ion-content class="has-header padding">
+
+		<title-display source="oven1.png" small="Follow Your Hunger" text="Contact Us"></title-display>
+		
+		<div class="card" ng-repeat="contact in contactList">
+			<contact-display icon="{{contact.icon}}" text="{{contact.text}}" communication="{{contact.communication}}" link="{{contact.link}}"></contact-display>
+		</div>
+	</ion-content>
+</ion-view>

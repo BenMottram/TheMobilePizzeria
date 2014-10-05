@@ -1,0 +1,55 @@
+<ion-view title="The Mobile Pizzeria">
+	<ion-content class="has-header padding">
+	
+		<title-display source="event1.png" small="It Has To Be" text="Perfect"></title-display>
+
+		<p>The Mobile Pizzeria also caters for public and private functions.  
+		The following menu shows a typical three course meal cooked by our team.</p>
+
+
+        <div class="card">
+            <div class="item item-divider">
+                <h2>Starters & Canapés</h2>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="caterContent" ng-repeat="startItem in startMenu">
+                    <catering-display item="{{startItem.menuItem}}" text="{{startItem.menuText}}"></catering-display>
+                </div>
+            </div>
+
+            <div class="item item-divider">
+                <h2>Mains</h2>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="caterContent" ng-repeat="mainItem in mainMenu">
+                    <catering-display item="{{mainItem.menuItem}}" text="{{mainItem.menuText}}"></catering-display>
+                </div>
+            </div>
+
+            <div class="item item-divider">
+                <h2>Desserts</h2>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="caterContent" ng-repeat="dessertItem in dessertMenu">
+                    <catering-display item="{{dessertItem.menuItem}}" text="{{dessertItem.menuText}}"></catering-display>
+                </div>
+            </div>
+        </div>
+
+        <!--<div ng-repeat="startItem in startMenu">
+            <h2>{{startItem.menuItem}}</h2>
+            <h2>{{startItem.menuText}}</h2>
+        </div>
+
+<div ng-repeat="mainItem in mainMenu">
+            <h2>{{mainItem.menuItem}}</h2>
+            <h2>{{mainItem.menuText}}</h2>
+        </div>
+
+        <div ng-repeat="dessertItem in dessertMenu">
+            <h2>{{dessertItem.menuItem}}</h2>
+            <h2>{{dessertItem.menuText}}</h2>
+        </div>-->
+
+	</ion-content>
+</ion-view>

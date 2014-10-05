@@ -1,0 +1,30 @@
+<ion-view title="The Mobile Pizzeria">
+
+    <ion-content scroll="false">
+        <div id="mapWrapper" style ="height:60%">
+            <div style="border-bottom: solid 1px black">
+                <div class="button-bar bar-dark" id="daySelector">
+                    <a class="button" ng-click="disDayMarkers(mMarkers)">Mon</a>
+                    <a class="button" ng-click="disDayMarkers(tMarkers)">Tue</a>
+                    <a class="button" ng-click="disDayMarkers(wMarkers)">Wed</a>
+                    <a class="button" ng-click="disDayMarkers(thMarkers)">Thu</a>
+                    <a class="button" ng-click="disDayMarkers(fMarkers)">Fri</a>
+                </div>
+                <p>please select a week day<p>
+            </div>
+                <google-map ng-if="showMap" center='map.center' zoom="map.zoom" control="map.mapControl" draggable="'true'">
+                    <marker idKey='marker1.idKey' coords="marker1.coords" control="marker1.markerControl1" >
+                    </marker>
+                    <marker idKey='marker2.idKey' coords="marker2.coords" control="marker2.markerControl2" >
+                    </marker>
+
+
+
+                </google-map>
+
+
+        </div>
+
+    </ion-content>
+	
+</ion-view>

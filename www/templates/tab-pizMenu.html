@@ -1,0 +1,10 @@
+<ion-view title="The Mobile Pizzeria" >
+	<ion-content class="has-header padding">
+		
+		<title-display source="atWork5.png" text="Street Food Menu"></title-display>
+		<div class="card" ng-repeat="pizza in menuSelection" >
+			<menu-display topping="{{pizza.topping}}" cost="{{pizza.cost}}" ingredients="{{pizza.ingredients}}"></menu-display>	
+		</div>
+			
+	</ion-content>
+</ion-view>

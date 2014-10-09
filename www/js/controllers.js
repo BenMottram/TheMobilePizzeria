@@ -35,97 +35,138 @@ angular.module('mobilePizzeria.controllers', [])
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//The FindUsCtrl is used to govern the behavoir of the map page.  Here the user is shown a googlemap and can select
-//the days of monday to friday.  When doing this the map is updated to show new markers which corrispond to where the vans
+//The FindUsCtrl is used to govern the behavior of the map page.  Here the user is shown a google map and can select
+//the days of monday to friday.  When doing this the map is updated to show new markers which correspond to where the vans
 // will be.
+//PLEASE NOTE THAT THIS AREA OF THE CODE IS DUE FOR REFACTORING AND WILL NOT REPRESENT FUTURE ITERATIONS
+//One final bug remains where old markers appear on the map as artifacts.  This is not a huge issue since the info
+//windows contain the relevant data, but for the moment this is still to be resolved.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .controller('FindUsCtrl', function($scope, DBFactory, $rootScope, $q){
-    DBFactory.selectToMarkers();
-    google.maps.visualRefresh = true;
-    $scope.q = $q.defer();
+        DBFactory.selectToMarkers();
+        google.maps.visualRefresh = true;
+        $scope.q = $q.defer();
 
-    $rootScope.$on("markerdata-built", function(){
-        console.log("marker data built");
-        $scope.mMarkers = DBFactory.returnMondayJSON();
-        $scope.tMarkers = DBFactory.returnTuesdayJSON();
-        $scope.wMarkers = DBFactory.returnWednesdayJSON();
-        $scope.thMarkers = DBFactory.returnThursdayJSON();
-        $scope.fMarkers = DBFactory.returnFridayJSON();
-        $scope.q.resolve();
-    });
+        $scope.monMarkers = [{},{}];
+        $scope.tueMarkers = [{},{}];
+        $scope.wedMarkers = [{},{}];
+        $scope.thurMarkers = [{},{}];
+        $scope.friMarkers = [{},{}];
 
-    $scope.q.promise
-        .then(function(){
-            $scope.map = {
-                center: {
-                    latitude: 51.238384,
-                    longitude: -0.208268
-                },
-                mapControl: {},
-                zoom: 12
-            };
-            $scope.marker1 = {
-                idKey: 1,
-                coords: {
-                    latitude: null,
-                    longitude: null
-                },
-                markerControl1: {}
-            };
-
-            $scope.marker2 = {
-                idKey: 2,
-                coords: {
-                    latitude: null,
-                    longitude: null
-                },
-                markerControl2 : {}
-            };
-            $scope.showMap = true;
+        $rootScope.$on("markerdata-built", function(){
+            console.log("marker data built");
+            $scope.mMarkers = DBFactory.returnMondayJSON();
+            $scope.tMarkers = DBFactory.returnTuesdayJSON();
+            $scope.wMarkers = DBFactory.returnWednesdayJSON();
+            $scope.thMarkers = DBFactory.returnThursdayJSON();
+            $scope.fMarkers = DBFactory.returnFridayJSON();
+            $rootScope.$broadcast("markers-built");
         });
 
-    $scope.disDayMarkers = function(dayMarker) {
-        console.log("old marker data: " + JSON.stringify($scope.marker1) + JSON.stringify($scope.marker2));
-        console.log("new marker data: " + JSON.stringify(dayMarker));
-        //$scope.marker1 = {};
-        //$scope.marker1.markerControl1.getGMarkers().setMap(null);
-        //$scope.marker2.markerControl2.getGMarkers().setMap(null);
-        //$scope.marker2 = {};
-        $scope.map.mapControl.refresh({latitude: 51.238384, longitude: -0.208268});
-        $scope.map.mapControl.getGMap().setZoom(12);
+        $rootScope.$on("markers-built", function(){
+            $scope.buildMarker('mon');
+            $scope.buildMarker('tue');
+            $scope.buildMarker('wed');
+            $scope.buildMarker('thur');
+            $scope.buildMarker('fri');
+            $scope.q.resolve();
+        });
 
 
-        for(i = 0; i < dayMarker.length; i ++){
-            if(i == 0){
-                //console.log("marker1 insert data: " + JSON.stringify(dayMarker[i]));
-                //$scope.marker1 = {};
-                $scope.marker1.coords = {};
-                $scope.marker1.coords.latitude = dayMarker[i].latitude;
-                $scope.marker1.coords.longitude = dayMarker[i].longitude;
-                $scope.marker1.location = dayMarker[i].location;
-                $scope.marker1.postCode = dayMarker[i].postCode;
-                $scope.marker1.time = dayMarker[i].time;
-                $scope.marker1.phoneNumber = dayMarker[i].phoneNumber;
-                $scope.marker1.showWindow = true;
-                $scope.marker1.idKey = 1;
-                $scope.marker1.markerControl = {};
+        $scope.q.promise
+            .then(function(){
+                $scope.map = {
+                    center: {
+                        latitude: 51.238384,
+                        longitude: -0.208268
+                    },
+                    zoom: 12,
+                    markerList: []
+                };
+                $scope.showMap = true;
+                $scope.disMonMarkers = function() {
+                    console.log("tueMarkers" + JSON.stringify($scope.monMarkers));
+                    $scope.map.markerList = $scope.monMarkers;
+                };
+                $scope.disTueMarkers = function() {
+                    console.log("tueMarkers" + JSON.stringify($scope.tueMarkers));
+                    $scope.map.markerList = $scope.tueMarkers;
+                };
+                $scope.disWedMarkers = function() {
+                    console.log("tueMarkers" + JSON.stringify($scope.wedMarkers));
+                    $scope.map.markerList = $scope.wedMarkers;
+                };
+                $scope.disThurMarkers = function() {
+                    console.log("tueMarkers" + JSON.stringify($scope.thurMarkers));
+                    $scope.map.markerList = $scope.thurMarkers;
+                };
+                $scope.disFriMarkers = function() {
+                    console.log("tueMarkers" + JSON.stringify($scope.friMarkers));
+                    $scope.map.markerList = $scope.friMarkers;
+                };
+            });
+
+        $scope.buildMarker = function(day){
+            $scope.mdm = $scope.mMarkers;
+            $scope.mdmID = 'mdm';
+            $scope.tdm = $scope.tMarkers;
+            $scope.tdmID = 'tdm';
+            $scope.wdm = $scope.wMarkers;
+            $scope.wdmID = 'wdm';
+            $scope.thdm = $scope.thMarkers;
+            $scope.thdmID = 'thdm';
+            $scope.fdm = $scope.fMarkers;
+            $scope.fdmID = 'fdm';
+            var dayMarkers = '';
+            var dayID = '';
+            var ddm = '';
+
+            if(day == 'mon'){
+                dayMarkers = $scope.monMarkers;
+                dayID = $scope.mdmID;
+                ddm = $scope.mdm;
             }
-            if(i == 1){
-                //console.log("marker2 insert data: " + JSON.stringify(dayMarker[i]));
-                //$scope.marker1 = {};
-                $scope.marker2.coords = {};
-                $scope.marker2.coords.latitude = dayMarker[i].latitude;
-                $scope.marker2.coords.longitude = dayMarker[i].longitude;
-                $scope.marker2.location = dayMarker[i].location;
-                $scope.marker2.postCode = dayMarker[i].postCode;
-                $scope.marker2.time = dayMarker[i].time;
-                $scope.marker2.phoneNumber = dayMarker[i].phoneNumber;
-                $scope.marker2.showWindow = true;
-                $scope.marker2.idKey = 2;
-                $scope.marker2.markerControl = {};
+            if(day == 'tue'){
+                dayMarkers = $scope.tueMarkers;
+                dayID = $scope.tdmID;
+                ddm = $scope.tdm;
             }
+            if(day == 'wed'){
+                dayMarkers = $scope.wedMarkers;
+                dayID = $scope.wdmID;
+                ddm = $scope.wdm;
+            }
+            if(day == 'thur'){
+                dayMarkers = $scope.thurMarkers;
+                dayID = $scope.thdmID;
+                ddm = $scope.thdm;
+            }
+            if(day == 'fri'){
+                dayMarkers = $scope.friMarkers;
+                dayID = $scope.fdmID;
+                ddm = $scope.fdm;
+            }
+            console.log("marker lenght: " + $scope.tdm.length);
+
+            if(ddm.length < 1){
+                dayMarkers = [];
+            }
+            else{
+                for(i = 0; i < ddm.length; i ++){
+                    dayMarkers[i].id = dayID + i;
+                    dayMarkers[i].latitude = ddm[i].latitude;
+                    dayMarkers[i].longitude = ddm[i].longitude;
+                    dayMarkers[i].showWindow = true;
+                    dayMarkers[i].location = ddm[i].location;
+                    dayMarkers[i].postCode = ddm[i].postCode;
+                    dayMarkers[i].time = ddm[i].time;
+                    dayMarkers[i].phoneNumber = ddm[i].phoneNumber;
+                }
+                console.log("Marker data:" + JSON.stringify(dayMarkers));
+            }
+
         }
-    }
+
 })
 
 

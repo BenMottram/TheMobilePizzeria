@@ -34,14 +34,14 @@ angular.module('mobilePizzeria.controllers', [])
         $scope.dessertItem = {menuItem: $scope.dessertMenu.menuItem, menuText: $scope.dessertMenu.menuText};
 })
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //The FindUsCtrl is used to govern the behavior of the map page.  Here the user is shown a google map and can select
 //the days of monday to friday.  When doing this the map is updated to show new markers which correspond to where the vans
 // will be.
 //PLEASE NOTE THAT THIS AREA OF THE CODE IS DUE FOR REFACTORING AND WILL NOT REPRESENT FUTURE ITERATIONS
 //One final bug remains where old markers appear on the map as artifacts.  This is not a huge issue since the info
 //windows contain the relevant data, but for the moment this is still to be resolved.
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .controller('FindUsCtrl', function($scope, DBFactory, $rootScope, $q){
         DBFactory.selectToMarkers();
         google.maps.visualRefresh = true;

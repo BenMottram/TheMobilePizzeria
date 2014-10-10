@@ -113,7 +113,6 @@ angular.module('mobilePizzeria', ['ionic', 'mobilePizzeria.controllers', 'mobile
                 DBFactory.selectToUpdate(newContent);
             }
         });
-
         //Once the appropriate tables to be updated have been selected the missingContent  They are then added to the
         //missingContent arrray and the appropiate data is UPDATED via the updateMasterTable
         $rootScope.$on('update-ready', function (event, args) {
